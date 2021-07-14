@@ -17,8 +17,7 @@ public class HeartRateController {
     private HeartRateService heartRateService;
 
     @PostMapping
-    public List<DataPoint<HeartRate>> mapHeartRateToOMH(@RequestBody JsonNode jsonNode,
-                                     @RequestParam("granularity") Integer granularity){
-        return heartRateService.mapHeartRate(jsonNode, granularity);
+    public List<DataPoint<HeartRate>> mapHeartRateToOMH(@RequestBody JsonNode jsonNode){
+        return heartRateService.mapHeartRate(jsonNode);
     }
 }

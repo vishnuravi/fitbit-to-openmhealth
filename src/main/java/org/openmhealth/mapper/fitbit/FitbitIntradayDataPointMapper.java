@@ -18,10 +18,7 @@ package org.openmhealth.mapper.fitbit;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
-import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.DurationUnitValue;
-import org.openmhealth.schema.domain.omh.SchemaSupport;
-import org.openmhealth.schema.domain.omh.TimeFrame;
+import org.openmhealth.schema.domain.omh.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +28,7 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.openmhealth.schema.domain.omh.DurationUnit.MINUTE;
+import static org.openmhealth.schema.domain.omh.DurationUnit.*;
 import static org.openmhealth.schema.domain.omh.TimeInterval.ofStartDateTimeAndDuration;
 import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
 
@@ -46,11 +43,23 @@ public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> ext
 
     // FIXME this shared state is a critical section if the mapper is reused
     private JsonNode responseNode;
-    private Integer intradayDataGranularityInMinutes;
+    private Integer intradayDataGranularityInterval;
+    private DurationUnit intradayDataGranularityUnits;
 
 
-    public FitbitIntradayDataPointMapper(Integer intradayDataGranularityInMinutes) {
-        this.intradayDataGranularityInMinutes = intradayDataGranularityInMinutes;
+    public FitbitIntradayDataPointMapper(Integer intradayDataGranularityInterval, String intradayDataGranularityUnits) {
+        this.intradayDataGranularityInterval = intradayDataGranularityInterval;
+        this.intradayDataGranularityUnits = intradayGranularityUnitsToDurationUnit(intradayDataGranularityUnits);
+    }
+
+    private DurationUnit intradayGranularityUnitsToDurationUnit(String intradayDataGranularityUnits) {
+        switch(intradayDataGranularityUnits){
+            case "day": return DAY;
+            case "hour": return HOUR;
+            case "minute": return MINUTE;
+            case "second": return SECOND;
+            default: return MINUTE;
+        }
     }
 
     @Override
@@ -110,7 +119,7 @@ public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> ext
 
         return new TimeFrame(ofStartDateTimeAndDuration(
                 getTimeSeriesEntryEffectiveStartDateTime(timeSeriesEntryNode),
-                new DurationUnitValue(MINUTE, intradayDataGranularityInMinutes)));
+                new DurationUnitValue(intradayDataGranularityUnits, intradayDataGranularityInterval)));
     }
 
     /**

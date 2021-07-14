@@ -16,8 +16,13 @@ public class HeartRateService {
     public HeartRateService(){
     }
 
-    public List<DataPoint<HeartRate>> mapHeartRate(JsonNode jsonNode, Integer granularity){
-        FitbitIntradayHeartRateDataPointMapper dataPointMapper = new FitbitIntradayHeartRateDataPointMapper(granularity);
+    public List<DataPoint<HeartRate>> mapHeartRate(JsonNode jsonNode){
+
+        // Get granularity from JSON
+        Integer intradayDataGranularityInterval = jsonNode.get("activities-heart-intraday").get("datasetInterval").asInt();
+        String intradayDataGranularityUnits = jsonNode.get("activities-heart-intraday").get("datasetType").asText();
+
+        FitbitIntradayHeartRateDataPointMapper dataPointMapper = new FitbitIntradayHeartRateDataPointMapper(intradayDataGranularityInterval, intradayDataGranularityUnits);
         return dataPointMapper.asDataPoints(jsonNode);
     }
 

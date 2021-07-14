@@ -36,8 +36,8 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredBig
  */
 public class FitbitIntradayHeartRateDataPointMapper extends FitbitIntradayDataPointMapper<HeartRate> {
 
-    public FitbitIntradayHeartRateDataPointMapper(Integer intradayDataGranularityInMinutes) {
-        super(intradayDataGranularityInMinutes);
+    public FitbitIntradayHeartRateDataPointMapper(Integer intradayDataGranularityInterval, String intradayDataGranularityUnits) {
+        super(intradayDataGranularityInterval, intradayDataGranularityUnits);
     }
 
     @Override
