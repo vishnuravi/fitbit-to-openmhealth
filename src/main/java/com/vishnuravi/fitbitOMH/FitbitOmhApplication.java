@@ -1,0 +1,13 @@
+package com.vishnuravi.fitbitOMH;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class FitbitOmhApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FitbitOmhApplication.class, args);
+	}
+
+}
