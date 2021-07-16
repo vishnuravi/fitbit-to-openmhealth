@@ -3,7 +3,7 @@ package com.vishnuravi.fitbitOMH.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vishnuravi.fitbitOMH.service.StepCountService;
 import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.StepCount;
+import org.openmhealth.schema.domain.omh.StepCount2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +20,7 @@ public class StepCountController {
     private StepCountService stepCountService;
 
     @PostMapping
-    public List<DataPoint<StepCount>> mapStepCountToOMH(@RequestBody JsonNode jsonNode){
+    public List<DataPoint<StepCount2>> mapStepCountToOMH(@RequestBody JsonNode jsonNode){
         return stepCountService.mapStepCount(jsonNode);
     }
 

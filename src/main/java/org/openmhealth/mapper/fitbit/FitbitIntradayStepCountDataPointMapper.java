@@ -18,7 +18,7 @@ package org.openmhealth.mapper.fitbit;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.StepCount;
+import org.openmhealth.schema.domain.omh.StepCount2;
 import org.openmhealth.schema.domain.omh.TimeFrame;
 
 import java.math.BigDecimal;
@@ -29,12 +29,12 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredBig
 
 /**
  * A mapper that translates responses from the Fitbit Resource API <code>activities/steps</code> endpoint into {@link
- * StepCount} data points.
+ * StepCount2} data points.
  *
  * @author Chris Schaefbauer
  * @see <a href="https://dev.fitbit.com/docs/activity/#get-activity-intraday-time-series">API documentation</a>
  */
-public class FitbitIntradayStepCountDataPointMapper extends FitbitIntradayDataPointMapper<StepCount> {
+public class FitbitIntradayStepCountDataPointMapper extends FitbitIntradayDataPointMapper<StepCount2> {
 
     public FitbitIntradayStepCountDataPointMapper(Integer intradayDataGranularityInterval, String intradayDataGranularityUnits) {
         super(intradayDataGranularityInterval, intradayDataGranularityUnits);
@@ -51,7 +51,7 @@ public class FitbitIntradayStepCountDataPointMapper extends FitbitIntradayDataPo
     }
 
     @Override
-    protected Optional<DataPoint<StepCount>> asDataPoint(JsonNode listEntryNode) {
+    protected Optional<DataPoint<StepCount2>> asDataPoint(JsonNode listEntryNode) {
 
         BigDecimal stepCountValue = asRequiredBigDecimal(listEntryNode, "value");
 
@@ -61,7 +61,7 @@ public class FitbitIntradayStepCountDataPointMapper extends FitbitIntradayDataPo
 
         TimeFrame effectiveTimeFrame = getTimeSeriesEntryEffectiveTimeFrame(listEntryNode);
 
-        StepCount.Builder stepCountBuilder = new StepCount.Builder(stepCountValue).setEffectiveTimeFrame(effectiveTimeFrame);
+        StepCount2.Builder stepCountBuilder = new StepCount2.Builder(stepCountValue, effectiveTimeFrame);
 
         return Optional.of(
                 newDataPoint(stepCountBuilder.build(), getTimeSeriesEntryExternalId(listEntryNode)));
