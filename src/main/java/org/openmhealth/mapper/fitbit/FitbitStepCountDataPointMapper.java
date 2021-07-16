@@ -35,7 +35,9 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
  *
  * @author Chris Schaefbauer
  * @author Emerson Farrugia
- * 
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public class FitbitStepCountDataPointMapper extends FitbitDataPointMapper<StepCount2> {
 

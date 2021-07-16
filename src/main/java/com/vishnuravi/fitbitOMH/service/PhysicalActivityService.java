@@ -16,6 +16,11 @@ public class PhysicalActivityService {
     public PhysicalActivityService(){
     }
 
+    /**
+     * Converts Fitbit daily activity summary to Open mHealth physical-activity using {@link FitbitPhysicalActivityDataPointMapper}.
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link PhysicalActivity} data points
+     */
     public List<DataPoint<PhysicalActivity>> mapPhysicalActivity(JsonNode jsonNode){
         FitbitPhysicalActivityDataPointMapper dataPointMapper = new FitbitPhysicalActivityDataPointMapper();
         return dataPointMapper.asDataPoints(jsonNode);

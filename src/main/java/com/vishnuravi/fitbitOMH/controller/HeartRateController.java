@@ -16,6 +16,11 @@ public class HeartRateController {
     @Autowired
     private HeartRateService heartRateService;
 
+    /**
+     * Converts Fitbit intraday heart rate to Open mHealth heart-rate
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link HeartRate} data points
+     */
     @PostMapping("/intraday")
     public List<DataPoint<HeartRate>> mapIntradayHeartRateToOMH(@RequestBody JsonNode jsonNode){
         return heartRateService.mapIntradayHeartRate(jsonNode);

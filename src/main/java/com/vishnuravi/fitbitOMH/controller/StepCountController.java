@@ -19,11 +19,21 @@ public class StepCountController {
     @Autowired
     private StepCountService stepCountService;
 
+    /**
+     * Converts Fitbit step count to Open mHealth step-count
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link StepCount2} data points
+     */
     @PostMapping("/summary")
     public List<DataPoint<StepCount2>> mapStepCountToOMH(@RequestBody JsonNode jsonNode){
         return stepCountService.mapStepCount(jsonNode);
     }
 
+    /**
+     * Converts Fitbit intraday step count data to Open mHealth step-count
+     * @param jsonNode - JSON from Fitbit API
+     * @return A List of {@link StepCount2} data points
+     */
     @PostMapping("/intraday")
     public List<DataPoint<StepCount2>> mapIntradayStepCountToOMH(@RequestBody JsonNode jsonNode){
         return stepCountService.mapIntradayStepCount(jsonNode);
