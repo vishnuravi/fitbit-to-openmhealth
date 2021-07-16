@@ -34,14 +34,15 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
 
 
 /**
- * TODO add Javadoc
  *
  * @author Chris Schaefbauer
  * @author Emerson Farrugia
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> extends FitbitDataPointMapper<T> {
 
-    // FIXME this shared state is a critical section if the mapper is reused
     private JsonNode responseNode;
     private Integer intradayDataGranularityInterval;
     private DurationUnit intradayDataGranularityUnits;
@@ -52,6 +53,11 @@ public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> ext
         this.intradayDataGranularityUnits = intradayGranularityUnitsToDurationUnit(intradayDataGranularityUnits);
     }
 
+    /**
+     * Converts string representation of units of granularity (e.g. "minute", "second") to {@link DurationUnit} types
+     * @param intradayDataGranularityUnits
+     * @return {@link DurationUnit}
+     */
     private DurationUnit intradayGranularityUnitsToDurationUnit(String intradayDataGranularityUnits) {
         switch(intradayDataGranularityUnits){
             case "day": return DAY;

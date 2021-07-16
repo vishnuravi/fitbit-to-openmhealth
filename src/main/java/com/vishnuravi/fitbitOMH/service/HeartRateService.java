@@ -16,9 +16,14 @@ public class HeartRateService {
     public HeartRateService(){
     }
 
-    public List<DataPoint<HeartRate>> mapHeartRate(JsonNode jsonNode){
+    /**
+     * Converts a list of Fitbit intraday heart rate data points to Open mHealth heart-rate using {@link FitbitIntradayHeartRateDataPointMapper}.
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A list of {@link HeartRate} data points
+     */
+    public List<DataPoint<HeartRate>> mapIntradayHeartRate(JsonNode jsonNode){
 
-        // Get granularity from JSON
+        // Get granularity interval and units from JSON
         Integer intradayDataGranularityInterval = jsonNode.get("activities-heart-intraday").get("datasetInterval").asInt();
         String intradayDataGranularityUnits = jsonNode.get("activities-heart-intraday").get("datasetType").asText();
 

@@ -2,22 +2,26 @@
 Spring Boot microservice that converts data obtained from [Fitbit's Web API](https://dev.fitbit.com/build/reference/web-api/) into [Open mHealth](https://openmhealth.org) compliant JSON. Based on [Shimmer](https://github.com/openmhealth/shimmer).
 Currently supports intraday heart rate, intraday step count, and physical activity data.
 
-## Installation and Usage
+## Installation
 - Requires [JDK 11 or above](https://jdk.java.net/16/) installed.
 
 ### To build
-`./gradlew build`
+```
+./gradlew build
+```
 
 ### To run
-`./gradlew bootRun`
+```
+./gradlew bootRun
+```
 
-The application will run on `http://localhost:8080`
+The application will start on `http://localhost:8080` by default.
 
-### Converting Intraday Heart Rate
-Execute a **POST** request with body containing JSON obtained from the Fitbit Web API's [Get Heart Rate Time Series endpoint](https://dev.fitbit.com/build/reference/web-api/heart-rate/) to `/heart-rate`.
+## Usage
 
-### Converting Intraday Step Count
-Execute a **POST** request with body containing JSON obtained from the Fitbit Web API's [Get Activity Intraday Time Series endpoint](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series)  to `/step-count`.
-
-### Converting Physical Activity
-Execute a **POST** request with body containing JSON obtained from the Fitbit Web API's [Get Daily Activity endpoint](https://dev.fitbit.com/build/reference/web-api/activity/)  to `/physical-activity`.
+| Endpoint  | Description  | Method  |  Body   |
+|---|---|---|---|
+| /heart-rate/intraday  | Converts Fitbit heart rate (intraday) to OMH heart-rate   | POST | JSON from [Get Heart Rate Time Series](https://dev.fitbit.com/build/reference/web-api/heart-rate/) endpoint   | 
+| /physical-activity  | Converts Fitbit daily activity summary to OMH [physical-activity](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_physical-activity)  | POST | JSON from [Get Daily Activity](https://dev.fitbit.com/build/reference/web-api/activity/) endpoint   |  
+| /step-count/summary  | Converts Fitbit step count (intraday) to OMH [step-count](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count)   | POST | JSON from [Get Activity Intraday Time Series](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series) endpoint  | 
+| /step-count/intraday | Converts Fitbit step count (summary) to OMH [step-count](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count) | POST | JSON from [Get Activity Intraday Time Series](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series) |

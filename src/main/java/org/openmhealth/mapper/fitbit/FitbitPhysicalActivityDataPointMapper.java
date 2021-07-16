@@ -37,6 +37,9 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
  *
  * @author Chris Schaefbauer
  * @see <a href="https://dev.fitbit.com/docs/activity/#get-daily-activity-summary">API documentation</a>
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public class FitbitPhysicalActivityDataPointMapper extends FitbitDataPointMapper<PhysicalActivity> {
 

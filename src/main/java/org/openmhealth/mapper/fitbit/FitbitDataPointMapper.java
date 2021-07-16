@@ -44,6 +44,9 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredNod
  *
  * @author Chris Schaefbauer
  * @author Emerson Farrugia
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements JsonNodeDataPointMapper<T> {
 

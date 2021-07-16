@@ -33,6 +33,9 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredBig
  *
  * @author Chris Schaefbauer
  * @see <a href="https://dev.fitbit.com/docs/activity/#get-activity-intraday-time-series">API documentation</a>
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public class FitbitIntradayStepCountDataPointMapper extends FitbitIntradayDataPointMapper<StepCount2> {
 

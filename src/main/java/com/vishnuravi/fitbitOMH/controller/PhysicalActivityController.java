@@ -19,6 +19,11 @@ public class PhysicalActivityController {
     @Autowired
     private PhysicalActivityService physicalActivityService;
 
+    /**
+     * Converts Fitbit daily activity summary to Open mHealth physical-activity
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link PhysicalActivity} data points
+     */
     @PostMapping
     public List<DataPoint<PhysicalActivity>> mapPhysicalActivityToOMH(@RequestBody JsonNode jsonNode){
         return physicalActivityService.mapPhysicalActivity(jsonNode);
