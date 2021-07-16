@@ -15,8 +15,8 @@ public class HeartRateService {
     @Autowired
     public HeartRateService(){
     }
-
-    public List<DataPoint<HeartRate>> mapHeartRate(JsonNode jsonNode){
+    
+    public List<DataPoint<HeartRate>> mapIntradayHeartRate(JsonNode jsonNode){
 
         // Get granularity from JSON
         Integer intradayDataGranularityInterval = jsonNode.get("activities-heart-intraday").get("datasetInterval").asInt();
