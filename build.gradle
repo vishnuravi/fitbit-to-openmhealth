@@ -10,13 +10,14 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
-	jcenter()
+	flatDir {
+		dirs 'libs'
+	}
 }
 
 dependencies {
-	implementation 'org.openmhealth.schema:omh-schema-sdk:1.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.openmhealth.schema:omh-schema-sdk:1.2.1'
+	implementation name: 'omh-schema-sdk-1.2.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.google.guava:guava:23.0'
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
