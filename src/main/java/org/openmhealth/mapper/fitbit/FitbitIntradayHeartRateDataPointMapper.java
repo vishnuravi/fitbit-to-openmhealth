@@ -33,6 +33,7 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredBig
  *
  * @author Wallace Wadge
  * @see <a href="https://dev.fitbit.com/docs/heart-rate/#get-heart-rate-intraday-time-series">API documentation</a>
+ *
  */
 public class FitbitIntradayHeartRateDataPointMapper extends FitbitIntradayDataPointMapper<HeartRate> {
 

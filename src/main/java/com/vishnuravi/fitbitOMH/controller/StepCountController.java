@@ -19,9 +19,14 @@ public class StepCountController {
     @Autowired
     private StepCountService stepCountService;
 
-    @PostMapping
+    @PostMapping("/summary")
     public List<DataPoint<StepCount2>> mapStepCountToOMH(@RequestBody JsonNode jsonNode){
         return stepCountService.mapStepCount(jsonNode);
+    }
+
+    @PostMapping("/intraday")
+    public List<DataPoint<StepCount2>> mapIntradayStepCountToOMH(@RequestBody JsonNode jsonNode){
+        return stepCountService.mapIntradayStepCount(jsonNode);
     }
 
 }

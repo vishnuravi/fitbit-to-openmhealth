@@ -38,6 +38,7 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
  *
  * @author Chris Schaefbauer
  * @author Emerson Farrugia
+ *
  */
 public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> extends FitbitDataPointMapper<T> {
 
