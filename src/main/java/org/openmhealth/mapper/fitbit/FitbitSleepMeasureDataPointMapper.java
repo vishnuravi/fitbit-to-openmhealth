@@ -23,7 +23,7 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-import static org.openmhealth.shim.common.mapper.JsonNodeMappingSupport.*;
+import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
 
 
 public abstract class FitbitSleepMeasureDataPointMapper<T extends SchemaSupport> extends FitbitDataPointMapper<T> {
