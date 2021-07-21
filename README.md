@@ -27,14 +27,16 @@ The application will start on `http://localhost:8080` by default.
 | /step-count/intraday | Converts Fitbit step count (summary) to OMH [step-count](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count) | POST | JSON from [Get Activity Intraday Time Series](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series) |
 
 ## To build a docker container
-docker build -t fitbit2openmhealth/v1.0
+docker build -t fitbit2openmhealth/v1.0 .
 
 ## To run the same locally 
 docker run -p 8080:8080 fitbit2openmhealth/v1.0
 
 ## To run the same in goolge cloudrun
 docker tag fitbit2openmhealth/v1.0 gcr.io/<gcp-project>/fitbit2openmhealth:v1.0
+
 docker push gcr.io/smede-276406/fitbit2openmhealth:v1.0
+
 gcloud beta run deploy --image gcr.io/smede-276406/fitbit2openmhealth:v1.0
  
 
