@@ -63,6 +63,10 @@ public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements 
         this.userId = userId;
     }
 
+    /**
+     * Sets the userId if it is present in the input
+     * @param node the input JSON
+     */
     protected void setUserIdIfExists(JsonNode node){
         Optional<String> userId = asOptionalString(node, "user_id");
         if (userId.isPresent()){
@@ -80,7 +84,7 @@ public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements 
 
         setUserIdIfExists(responseNode);
 
-        JsonNode listNode = asRequiredNode(responseNodes.get(0), getListNodeName());
+        JsonNode listNode = asRequiredNode(responseNode, getListNodeName());
 
         List<DataPoint<T>> dataPoints = Lists.newArrayList();
 
