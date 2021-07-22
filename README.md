@@ -37,6 +37,5 @@ docker tag fitbit2openmhealth/v1.0 gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.
 
 docker push gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.0
 
-gcloud beta run deploy --image gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.0
- 
+gcloud beta run deploy --image gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.0 
 
