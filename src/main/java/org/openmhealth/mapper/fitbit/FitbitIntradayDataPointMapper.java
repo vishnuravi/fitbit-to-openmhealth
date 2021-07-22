@@ -76,6 +76,8 @@ public abstract class FitbitIntradayDataPointMapper<T extends SchemaSupport> ext
 
         responseNode = responseNodes.get(0);
 
+        setUserIdIfExists(responseNode);
+
         List<DataPoint<T>> dataPoints = Lists.newArrayList();
 
         for (JsonNode listEntryNode : asRequiredNode(responseNode, getListNodeName())) {
