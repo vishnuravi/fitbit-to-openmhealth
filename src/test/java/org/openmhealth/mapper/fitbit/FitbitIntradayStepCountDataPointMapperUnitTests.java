@@ -17,10 +17,7 @@
 package org.openmhealth.mapper.fitbit;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.DurationUnit;
-import org.openmhealth.schema.domain.omh.DurationUnitValue;
-import org.openmhealth.schema.domain.omh.StepCount2;
+import org.openmhealth.schema.domain.omh.*;
 import org.openmhealth.mapper.common.DataPointMapperUnitTests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -51,7 +48,7 @@ public class FitbitIntradayStepCountDataPointMapperUnitTests extends DataPointMa
     @BeforeTest
     public void initializeResponseNode() throws IOException {
 
-        responseNode = asJsonNode("/org/openmhealth/shim/fitbit/mapper/fitbit-activities-steps-1d-1m-intraday.json");
+        responseNode = asJsonNode("/test-data/step-count-intraday-test.json");
     }
 
     @Test
@@ -72,12 +69,24 @@ public class FitbitIntradayStepCountDataPointMapperUnitTests extends DataPointMa
     }
 
     @Test
+    public void asDataPointsShouldSetUserId(){
+
+        final List<DataPoint<StepCount2>> dataPoints = mapper.asDataPoints((singletonList(responseNode)));
+
+        for (DataPoint<?> dataPoint : dataPoints) {
+            assertThat(
+                    dataPoint.getHeader().getUserId(),
+                    is(equalTo("123456")));
+        }
+    }
+
+    @Test
     public void asDataPointsShouldReturnCorrectDataPoints() {
 
         List<DataPoint<StepCount2>> dataPoints = mapper.asDataPoints(singletonList(responseNode));
         StepCount2.Builder stepCountBuilder;
 
-        stepCountBuilder = new StepCount2.Builder(7,
+        stepCountBuilder = new StepCount2.Builder(14,
                 ofStartDateTimeAndDuration(OffsetDateTime.parse("2021-07-22T00:00:00Z"),
                         new DurationUnitValue(DurationUnit.MINUTE, 1)));
 
@@ -86,7 +95,7 @@ public class FitbitIntradayStepCountDataPointMapperUnitTests extends DataPointMa
         assertThat(dataPoints.get(0).getHeader().getAcquisitionProvenance().getSourceName(),
                 equalTo(RESOURCE_API_SOURCE_NAME));
 
-        stepCountBuilder = new StepCount2.Builder(52,
+        stepCountBuilder = new StepCount2.Builder(25,
                 ofStartDateTimeAndDuration(OffsetDateTime.parse("2021-07-22T14:28:00Z"),
                         new DurationUnitValue(DurationUnit.MINUTE, 1)));
 

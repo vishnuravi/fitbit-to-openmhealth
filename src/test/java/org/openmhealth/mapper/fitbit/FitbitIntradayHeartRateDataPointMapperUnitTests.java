@@ -51,7 +51,7 @@ public class FitbitIntradayHeartRateDataPointMapperUnitTests extends DataPointMa
     @BeforeTest
     public void initializeResponseNode() throws IOException {
 
-        responseNode = asJsonNode("/org/openmhealth/shim/fitbit/mapper/fitbit-activities-heart-1d-1m-intraday.json");
+        responseNode = asJsonNode("/test-data/heart-rate-intraday-test.json");
     }
 
     @Test
@@ -69,6 +69,18 @@ public class FitbitIntradayHeartRateDataPointMapperUnitTests extends DataPointMa
             assertThat(
                     dataPoint.getHeader().getAcquisitionProvenance().getAdditionalProperties().get("external_id"),
                     is(not(nullValue())));
+        }
+    }
+
+    @Test
+    public void asDataPointsShouldSetUserId(){
+
+        final List<DataPoint<HeartRate>> dataPoints = mapper.asDataPoints((singletonList(responseNode)));
+
+        for (DataPoint<?> dataPoint : dataPoints) {
+            assertThat(
+                    dataPoint.getHeader().getUserId(),
+                    is(equalTo("123456")));
         }
     }
 
