@@ -1,10 +1,8 @@
 package com.vishnuravi.fitbitOMH.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.openmhealth.mapper.fitbit.FitbitSleepDurationDataPointMapper;
 import org.openmhealth.mapper.fitbit.FitbitSleepEpisodeDataPointMapper;
 import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.SleepDuration2;
 import org.openmhealth.schema.domain.omh.SleepEpisode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +14,6 @@ public class SleepService {
 
     @Autowired
     public SleepService() {
-    }
-
-    public List<DataPoint<SleepDuration2>> mapSleepDuration(JsonNode jsonNode){
-        FitbitSleepDurationDataPointMapper dataPointMapper = new FitbitSleepDurationDataPointMapper();
-        return dataPointMapper.asDataPoints(jsonNode);
     }
 
     public List<DataPoint<SleepEpisode>> mapSleepEpisode(JsonNode jsonNode){
