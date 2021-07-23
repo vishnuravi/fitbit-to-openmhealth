@@ -10,6 +10,11 @@ Currently supports intraday heart rate, intraday step count, and physical activi
 ./gradlew build
 ```
 
+### To test
+```
+./gradlew test
+```
+
 ### To run
 ```
 ./gradlew bootRun
@@ -25,6 +30,7 @@ The application will start on `http://localhost:8080` by default.
 | /physical-activity  | Converts Fitbit daily activity summary to OMH [physical-activity](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_physical-activity)  | POST | JSON from [Get Daily Activity](https://dev.fitbit.com/build/reference/web-api/activity/) endpoint   |  
 | /step-count/summary  | Converts Fitbit step count (intraday) to OMH [step-count](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count)   | POST | JSON from [Get Activity Intraday Time Series](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series) endpoint  | 
 | /step-count/intraday | Converts Fitbit step count (summary) to OMH [step-count](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_step-count) | POST | JSON from [Get Activity Intraday Time Series](https://dev.fitbit.com/build/reference/web-api/activity/#activity-time-series) |
+| /sleep/episode | Converts Fitbit sleep logs to OMH [sleep-episode](https://www.openmhealth.org/documentation/#/schema-docs/schema-library/schemas/omh_sleep-episode) | POST | JSON from [Get Sleep Logs](https://dev.fitbit.com/build/reference/web-api/sleep/#get-sleep-logs)
 
 ## To build a docker container
 docker build -t fitbit2openmhealth/v1.0

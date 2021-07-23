@@ -36,6 +36,9 @@ import static org.openmhealth.mapper.common.JsonNodeMappingSupport.*;
  *
  * @author Emerson Farrugia
  * @see <a href="https://dev.fitbit.com/docs/sleep/#get-sleep-logs">API documentation</a>
+ *
+ * Modified by Vishnu Ravi (2021)
+ *
  */
 public class FitbitSleepEpisodeDataPointMapper extends FitbitSleepMeasureDataPointMapper<SleepEpisode> {
 
