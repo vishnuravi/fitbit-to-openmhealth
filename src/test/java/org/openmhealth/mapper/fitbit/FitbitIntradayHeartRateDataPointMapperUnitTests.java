@@ -76,7 +76,7 @@ public class FitbitIntradayHeartRateDataPointMapperUnitTests extends DataPointMa
     public void asDataPointsShouldReturnCorrectDataPoints() {
 
         List<DataPoint<HeartRate>> dataPoints = mapper.asDataPoints(singletonList(responseNode));
-        HeartRate.Builder heartRateBuilder = new HeartRate.Builder(64)
+        HeartRate.Builder heartRateBuilder = new HeartRate.Builder(76)
                 .setEffectiveTimeFrame(ofStartDateTimeAndDuration(OffsetDateTime.parse("2021-07-21T00:01Z"),
                         new DurationUnitValue(DurationUnit.MINUTE, 1)));
 
