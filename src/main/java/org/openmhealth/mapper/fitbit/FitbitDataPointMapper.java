@@ -31,6 +31,7 @@ import java.util.UUID;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.time.ZoneOffset.UTC;
+import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asOptionalString;
 import static org.openmhealth.schema.domain.omh.DataPointHeader.Builder;
 import static org.openmhealth.mapper.common.JsonNodeMappingSupport.asRequiredNode;
 
@@ -52,13 +53,38 @@ public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements 
 
     public static final String RESOURCE_API_SOURCE_NAME = "Fitbit Resource API";
 
+    private String userId = "";
+
+    protected String getUserId() {
+        return userId;
+    }
+
+    protected void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * Sets the userId if it is present in the input
+     * @param node the input JSON
+     */
+    protected void setUserIdIfExists(JsonNode node){
+        Optional<String> userId = asOptionalString(node, "user_id");
+        if (userId.isPresent()){
+            setUserId(userId.get());
+        }
+    }
+
     @Override
     public List<DataPoint<T>> asDataPoints(List<JsonNode> responseNodes) {
 
         checkNotNull(responseNodes);
         checkArgument(responseNodes.size() == 1, "A single response node is allowed per call.");
 
-        JsonNode listNode = asRequiredNode(responseNodes.get(0), getListNodeName());
+        JsonNode responseNode = responseNodes.get(0);
+
+        setUserIdIfExists(responseNode);
+
+        JsonNode listNode = asRequiredNode(responseNode, getListNodeName());
 
         List<DataPoint<T>> dataPoints = Lists.newArrayList();
 
@@ -92,7 +118,9 @@ public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements 
         }
 
         DataPointHeader header = new Builder(UUID.randomUUID().toString(), measure.getSchemaId())
-                .setAcquisitionProvenance(acquisitionProvenance).build();
+                .setAcquisitionProvenance(acquisitionProvenance)
+                .setUserId(getUserId())
+                .build();
 
         return new DataPoint<>(header, measure);
     }
@@ -106,6 +134,7 @@ public abstract class FitbitDataPointMapper<T extends SchemaSupport> implements 
 
         return OffsetDateTime.of(dateTime, UTC);
     }
+
 
     /**
      * Maps a JSON response node from the Fitbit API into a data point.
