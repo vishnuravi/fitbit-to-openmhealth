@@ -1,0 +1,17 @@
+{
+    "user_id": "123456",
+    "activities-steps": [
+        {
+            "dateTime": "2021-07-20",
+            "value": 1551
+        },
+        {
+            "dateTime": "2021-07-21",
+            "value": 774
+        },
+        {
+            "dateTime": "2021-07-22",
+            "value": 0
+        }
+    ]
+}

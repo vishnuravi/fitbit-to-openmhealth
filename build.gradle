@@ -18,11 +18,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation name: 'omh-schema-sdk-1.2.2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.google.guava:guava:23.0'
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.testng:testng:6.14.3'
 }
 
 test {
-	useJUnitPlatform()
+	useTestNG()
 }

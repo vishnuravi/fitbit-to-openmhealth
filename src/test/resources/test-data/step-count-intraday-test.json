@@ -1,0 +1,27 @@
+{
+    "user_id": "123456",
+    "activities-steps": [
+        {
+            "dateTime": "2021-07-22",
+            "value": 3212
+        }
+    ],
+    "activities-steps-intraday": {
+        "dataset": [
+            {
+                "time": "00:00:00",
+                "value": 14
+            },
+            {
+                "time": "14:27:00",
+                "value": 0
+            },
+            {
+                "time": "14:28:00",
+                "value": 25
+            }
+        ],
+        "datasetInterval": 1,
+        "datasetType": "minute"
+    }
+}
