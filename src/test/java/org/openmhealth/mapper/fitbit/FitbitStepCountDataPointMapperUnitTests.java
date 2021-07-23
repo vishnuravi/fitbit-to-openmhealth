@@ -52,8 +52,8 @@ public class FitbitStepCountDataPointMapperUnitTests extends DataPointMapperUnit
 
         List<DataPoint<StepCount2>> dataPoints = mapper.asDataPoints(singletonList(responseNode));
 
-        assertThatDataPointMatches(dataPoints.get(0), 175, "2015-08-23");
-        assertThatDataPointMatches(dataPoints.get(1), 2937, "2015-08-24");
+        assertThatDataPointMatches(dataPoints.get(0), 175, "2021-07-20");
+        assertThatDataPointMatches(dataPoints.get(1), 2937, "2021-07-21");
     }
 
     public void assertThatDataPointMatches(DataPoint<StepCount2> dataPoint, long expectedStepCountValue,
@@ -82,7 +82,7 @@ public class FitbitStepCountDataPointMapperUnitTests extends DataPointMapperUnit
                 "    \"activities-steps\": [\n" +
                 "        {\n" +
                 "            \"dateTime\": \"2021-07-22\",\n" +
-                "            \"value\": \"0\"\n" +
+                "            \"value\": 0\n" +
                 "        }\n" +
                 "    ]\n" +
                 "}\n");

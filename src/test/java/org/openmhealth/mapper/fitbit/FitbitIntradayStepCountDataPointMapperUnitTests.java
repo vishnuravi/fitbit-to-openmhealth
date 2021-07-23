@@ -78,7 +78,7 @@ public class FitbitIntradayStepCountDataPointMapperUnitTests extends DataPointMa
         StepCount2.Builder stepCountBuilder;
 
         stepCountBuilder = new StepCount2.Builder(7,
-                ofStartDateTimeAndDuration(OffsetDateTime.parse("2015-08-21T00:00:00Z"),
+                ofStartDateTimeAndDuration(OffsetDateTime.parse("2021-07-22T00:00:00Z"),
                         new DurationUnitValue(DurationUnit.MINUTE, 1)));
 
         assertThat(dataPoints.get(0).getBody(), equalTo(stepCountBuilder.build()));
@@ -87,7 +87,7 @@ public class FitbitIntradayStepCountDataPointMapperUnitTests extends DataPointMa
                 equalTo(RESOURCE_API_SOURCE_NAME));
 
         stepCountBuilder = new StepCount2.Builder(52,
-                ofStartDateTimeAndDuration(OffsetDateTime.parse("2015-08-21T14:28:00Z"),
+                ofStartDateTimeAndDuration(OffsetDateTime.parse("2021-07-22T14:28:00Z"),
                         new DurationUnitValue(DurationUnit.MINUTE, 1)));
 
         assertThat(dataPoints.get(1).getBody(), equalTo(stepCountBuilder.build()));
