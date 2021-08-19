@@ -45,3 +45,6 @@ docker push gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.0
 
 gcloud beta run deploy --image gcr.io/\[gcp-project\]/fitbit2openmhealth:v1.0 
 
+## To build using google cloud builder
+gcloud builds submit --config cloud-build.yml
+
