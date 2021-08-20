@@ -3,7 +3,6 @@ package com.vishnuravi.fitbitOMH.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vishnuravi.fitbitOMH.service.SleepService;
 import org.openmhealth.schema.domain.omh.DataPoint;
-import org.openmhealth.schema.domain.omh.PhysicalActivity;
 import org.openmhealth.schema.domain.omh.SleepEpisode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
