@@ -16,6 +16,11 @@ public class SleepService {
     public SleepService() {
     }
 
+    /**
+     * Converts Fitbit sleep logs to Open mHealth sleep-episode using {@link FitbitSleepEpisodeDataPointMapper}.
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link SleepEpisode} data points
+     */
     public List<DataPoint<SleepEpisode>> mapSleepEpisode(JsonNode jsonNode){
         FitbitSleepEpisodeDataPointMapper dataPointMapper = new FitbitSleepEpisodeDataPointMapper();
         return dataPointMapper.asDataPoints(jsonNode);

@@ -19,6 +19,11 @@ public class SleepController {
     @Autowired
     private SleepService sleepService;
 
+    /**
+     * Converts Fitbit sleep logs to Open mHealth sleep-episode
+     * @param jsonNode - JSON from Fitbit Web API
+     * @return A List of {@link SleepEpisode} data points
+     */
     @PostMapping("/episode")
     public List<DataPoint<SleepEpisode>> mapSleepEpisodeToOMH(@RequestBody JsonNode jsonNode){
         return sleepService.mapSleepEpisode(jsonNode);
